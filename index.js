@@ -5,7 +5,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import corsOptions from "./config/corsOptions.js";
 import credentials from "./middleWare/credentials.js";
-// import verifyJWT from "./middleware/verifyJWT.js";
+import verifyJWT from "./middleware/verifyJWT.js";
 
 const app = express();
 app.use(credentials);
