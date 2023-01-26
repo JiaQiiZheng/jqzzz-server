@@ -13,7 +13,7 @@ app.use(credentials);
 
 const allowCors = (fn) => async (req, res) => {
   res.setHeader("Access-Control-Allow-Credentials", true);
-  res.setHeader("Access-Control-Allow-Origin", "https://jqzzz.com/");
+  res.setHeader("Access-Control-Allow-Origin", "https://www.jqzzz.com/");
   // another common pattern
   // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
   res.setHeader(
