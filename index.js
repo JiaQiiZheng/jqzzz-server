@@ -10,6 +10,22 @@ import verifyJWT from "./middleWare/verifyJWT.js";
 
 const app = express();
 app.use(credentials);
+
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Credentials", true);
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  // another common pattern
+  // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET,OPTIONS,PATCH,DELETE,POST,PUT"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
+  );
+});
+app.use(cors());
 app.use(cors(corsOptions));
 
 // parse application/json
@@ -38,25 +54,4 @@ mongoose
   )
   .catch((error) => console.log(`${error} did not connect`));
 
-export default (req, res) => {
-  //set header first to allow request or origin domain (value can be different)
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  res.setHeader("Access-Control-Allow-Credentials", true);
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PUT, PATCH, OPTIONS, DELETE"
-  );
-
-  //---- other code
-
-  //Preflight CORS handler
-  if (req.method === "OPTIONS") {
-    return res.status(200).json({
-      body: "OK",
-    });
-  }
-};
+export default server;
