@@ -21,7 +21,7 @@ import homeRouter from "./routes/home.js";
 app.use("/register", registerRouter);
 app.use("/auth", authRouter);
 app.use("/", homeRouter);
-// app.use(verifyJWT);
+app.use(verifyJWT);
 
 import mongoose, { setDriver } from "mongoose";
 mongoose.set("strictQuery", false);
