@@ -5,7 +5,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import corsOptions from "./config/corsOptions.js";
 import credentials from "./middleWare/credentials.js";
-import verifyJWT from "./middleware/verifyJWT.js";
+// import verifyJWT from "./middleware/verifyJWT.js";
 
 const app = express();
 app.use(credentials);
@@ -14,13 +14,13 @@ app.use(cors(corsOptions));
 // parse application/json
 app.use(bodyParser.json());
 
-import registerRouter from "./routes/register.js";
-import authRouter from "./routes/auth.js";
+// import registerRouter from "./routes/register.js";
+// import authRouter from "./routes/auth.js";
 import homeRouter from "./routes/home.js";
-app.use("/register", registerRouter);
-app.use("/auth", authRouter);
+// app.use("/register", registerRouter);
+// app.use("/auth", authRouter);
 app.use("/", homeRouter);
-app.use(verifyJWT);
+// app.use(verifyJWT);
 
 import mongoose, { setDriver } from "mongoose";
 mongoose.set("strictQuery", false);
