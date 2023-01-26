@@ -48,7 +48,7 @@ const handler = (req, res) => {
   res.end(d.toString());
 };
 
-module.exports = allowCors(handler);
+allowCors(handler);
 
 import mongoose, { setDriver } from "mongoose";
 mongoose.set("strictQuery", false);
