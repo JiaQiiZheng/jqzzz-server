@@ -11,7 +11,7 @@ import verifyJWT from "./middleWare/verifyJWT.js";
 const app = express();
 app.use(credentials);
 
-app.use((req, res, next) => {
+const allowCors = (fn) => async (req, res) => {
   res.setHeader("Access-Control-Allow-Credentials", true);
   res.setHeader("Access-Control-Allow-Origin", "*");
   // another common pattern
@@ -24,8 +24,18 @@ app.use((req, res, next) => {
     "Access-Control-Allow-Headers",
     "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
   );
-});
-app.use(cors());
+  if (req.method === "OPTIONS") {
+    res.status(200).end();
+    return;
+  }
+  return await fn(req, res);
+};
+
+const handler = (req, res) => {
+  const d = new Date();
+  res.end(d.toString());
+};
+app.use(allowCors(handler));
 app.use(cors(corsOptions));
 
 // parse application/json
