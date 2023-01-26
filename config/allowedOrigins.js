@@ -1,7 +1,7 @@
 const allowedOrigins = [
-  "http://www.jqzzz.com/",
-  "http://jqzzz.com/",
-  "http://jqzzz-client.vercel.app/",
+  "https://www.jqzzz.com/",
+  "https://jqzzz.com/",
+  "https://jqzzz-client.vercel.app/",
   "http://localhost:5173",
 ];
 
